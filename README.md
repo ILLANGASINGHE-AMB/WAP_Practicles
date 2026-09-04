@@ -20,13 +20,6 @@ Group: **#TeamFreeWill2.0**
 | Sudeep Hirushan | ICT/24/862 |
 | Shanuka Lakshan | ICT/24/904 |
 
-## Before you submit
-
-1. Open the application URL and share it from the page's share menu if you want
-   markers to reach it. It is private until then.
-2. Upload `GradePath-Lab1-submission.zip` to the LMS. Rename it first if the
-   upload link expects a different name.
-
 ## Quick check that it works
 
     cd gradepath
