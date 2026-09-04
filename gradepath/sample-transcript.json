@@ -1,0 +1,114 @@
+{
+  "courses": [
+    {
+      "id": "sample0",
+      "semester": "Y1S1",
+      "code": "IIC 1113",
+      "title": "Introduction to ICT",
+      "credits": 3,
+      "grade": "A-",
+      "excluded": false
+    },
+    {
+      "id": "sample1",
+      "semester": "Y1S1",
+      "code": "IIC 1122",
+      "title": "Programming Fundamentals",
+      "credits": 2,
+      "grade": "B+",
+      "excluded": false
+    },
+    {
+      "id": "sample2",
+      "semester": "Y1S1",
+      "code": "IIM 1113",
+      "title": "Mathematics for ICT",
+      "credits": 3,
+      "grade": "B",
+      "excluded": false
+    },
+    {
+      "id": "sample3",
+      "semester": "Y1S2",
+      "code": "IIC 1213",
+      "title": "Object Oriented Programming",
+      "credits": 3,
+      "grade": "A",
+      "excluded": false
+    },
+    {
+      "id": "sample4",
+      "semester": "Y1S2",
+      "code": "IIC 1222",
+      "title": "Database Management Systems",
+      "credits": 2,
+      "grade": "B+",
+      "excluded": false
+    },
+    {
+      "id": "sample5",
+      "semester": "Y1S2",
+      "code": "IIS 1212",
+      "title": "Communication Skills",
+      "credits": 2,
+      "grade": "A-",
+      "excluded": false
+    },
+    {
+      "id": "sample6",
+      "semester": "Y2S1",
+      "code": "IIC 2113",
+      "title": "Data Structures and Algorithms",
+      "credits": 3,
+      "grade": "B-",
+      "excluded": false
+    },
+    {
+      "id": "sample7",
+      "semester": "Y2S1",
+      "code": "IIC 2122",
+      "title": "Computer Networks",
+      "credits": 2,
+      "grade": "B+",
+      "excluded": false
+    },
+    {
+      "id": "sample8",
+      "semester": "Y2S1",
+      "code": "IIC 2132",
+      "title": "Operating Systems",
+      "credits": 2,
+      "grade": "C+",
+      "excluded": false
+    },
+    {
+      "id": "sample9",
+      "semester": "Y2S2",
+      "code": "IIC 2223",
+      "title": "Web Application Development",
+      "credits": 3,
+      "grade": "A",
+      "excluded": false
+    },
+    {
+      "id": "sample10",
+      "semester": "Y2S2",
+      "code": "IIC 2212",
+      "title": "Software Engineering",
+      "credits": 2,
+      "grade": "A-",
+      "excluded": false
+    },
+    {
+      "id": "sample11",
+      "semester": "Y2S2",
+      "code": "IIM 2212",
+      "title": "Statistics for ICT",
+      "credits": 2,
+      "grade": "B",
+      "excluded": false
+    }
+  ],
+  "target": 3.7,
+  "remaining": 30
+}

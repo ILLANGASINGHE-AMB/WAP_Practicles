@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GradePath - Group Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ink: #12181d; --ink-2: #414d57; --muted: #6f7b85;
+    --rule: #d8dee4; --accent: #1c5cab; --soft: #eef3f9; --fill: #f6f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font: 400 10.5pt/1.5 "Public Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .page { max-width: 190mm; margin: 0 auto; padding: 14mm 0 18mm; }
+  h1, h2, h3 { font-family: "Newsreader", Georgia, serif; font-weight: 600; line-height: 1.2; }
+  h1 { font-size: 24pt; margin: 0 0 2mm; letter-spacing: -.01em; }
+  h2 { font-size: 13pt; margin: 9mm 0 2.5mm; padding-bottom: 1.5mm; border-bottom: 1.5px solid var(--ink); }
+  h3 { font-size: 11pt; margin: 5mm 0 1.5mm; }
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  li { margin-bottom: 1.2mm; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 8pt; text-transform: uppercase;
+    letter-spacing: .12em; color: var(--muted); margin: 0 0 2mm;
+  }
+  .lede { font-size: 11.5pt; color: var(--ink-2); max-width: 62ch; }
+  .rule { height: 3px; background: var(--accent); width: 26mm; margin: 4mm 0 6mm; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 3mm; }
+  th, td { text-align: left; padding: 2mm 2.5mm; border-bottom: 1px solid var(--rule); vertical-align: top; font-size: 9.5pt; }
+  th {
+    font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 7.8pt;
+    text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  td.k { width: 42mm; color: var(--ink-2); font-weight: 500; }
+  .fill { background: var(--soft); color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: 9pt; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+  .prompt {
+    background: var(--fill); border-left: 3px solid var(--accent); border-radius: 0 2mm 2mm 0;
+    padding: 3mm 3.5mm; margin: 0 0 3mm; font-family: "IBM Plex Mono", monospace; font-size: 9pt;
+    white-space: pre-wrap; word-break: break-word; color: var(--ink);
+  }
+  .prompt .who {
+    display: block; font-size: 7.6pt; text-transform: uppercase; letter-spacing: .09em;
+    color: var(--muted); margin-bottom: 1.5mm;
+  }
+  .callout { background: var(--fill); border: 1px solid var(--rule); border-radius: 2mm; padding: 3mm 3.5mm; margin: 0 0 3mm; }
+  code { font-family: "IBM Plex Mono", monospace; font-size: 9pt; background: var(--fill); padding: .3mm 1mm; border-radius: 1mm; }
+  .pass { font-family: "IBM Plex Mono", monospace; font-size: 9pt; color: #076d07; }
+  footer { margin-top: 8mm; padding-top: 3mm; border-top: 1px solid var(--rule); color: var(--muted); font-size: 8.5pt; }
+  @page { size: A4; margin: 14mm 16mm; }
+  @media print {
+    .page { max-width: none; padding: 0; }
+    h2 { break-after: avoid; }
+    table, .prompt, .callout { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="eyebrow">University of Sri Jayewardenepura &middot; BICT Semester 4 &middot; IIC 2223 Web Application Development</p>
+  <h1>GradePath</h1>
+  <p class="lede">A GPA and degree-class planner that tells a student what average they still need to
+     reach the class they want. Laboratory Exercise 1 - Part 1, AI Web Application Challenge.</p>
+  <div class="rule"></div>
+
+  <h2>Group</h2>
+  <table>
+    <tr><td class="k">Group name</td><td>#TeamFreeWill2.0</td></tr>
+    <tr><td class="k">Project title</td><td>GradePath - GPA &amp; Degree Class Planner</td></tr>
+    <tr><td class="k">Date</td><td>4 September 2026</td></tr>
+  </table>
+
+  <h3>Members</h3>
+  <table>
+    <thead><tr><th>Name</th><th>Index number</th></tr></thead>
+    <tbody>
+      <tr><td>Yasith Dharmasena</td><td>ICT/24/828</td></tr>
+      <tr><td>Anjana Ilangasinghe</td><td>ICT/24/858</td></tr>
+      <tr><td>Induwara Ranathunga</td><td>ICT/24/859</td></tr>
+      <tr><td>Sudeep Hirushan</td><td>ICT/24/862</td></tr>
+      <tr><td>Shanuka Lakshan</td><td>ICT/24/904</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Problem, users and summary</h2>
+  <h3>The problem</h3>
+  <p>Undergraduates track grades in scattered notes and spreadsheets and only discover late that a degree
+     class has slipped out of reach. The arithmetic that matters is not the GPA already earned but the
+     average still required over the credits left, and almost nobody works that out by hand. Repeat
+     attempts, medical grades and non-GPA courses make the calculation easy to get wrong.</p>
+
+  <h3>Intended users</h3>
+  <p>Undergraduate students, first year through final year. The programme constants are set for the BICT
+     degree at the University of Sri Jayewardenepura, and a single object at the top of the code changes
+     them for any other 4.00-scale programme. Academic advisors can use the same page during consultations.</p>
+
+  <h3>Summary</h3>
+  <p>GradePath is a single-page web application that holds a student's transcript in their own browser.
+     It shows the cumulative GPA, the degree class that GPA currently earns, the gap to the next class,
+     and a trend of the cumulative GPA after each semester. The planner then answers the question the
+     student actually has: given a target class and the credits still to take, what average is needed,
+     which grade is that, and is the target still reachable at all. No account, no server, no data leaving
+     the device.</p>
+
+  <h3>The essential user journey</h3>
+  <ol>
+    <li>Add a course: semester, code, credits and grade.</li>
+    <li>The cumulative GPA, degree class and credit counts update immediately.</li>
+    <li>Pick a target class and enter the credits still to be taken.</li>
+    <li>Read the verdict: the average needed, the equivalent grade, and whether the target is secured,
+        reachable, tight, or out of reach.</li>
+  </ol>
+
+  <h2>Main features</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Credit-weighted GPA</td><td>Cumulative and per-semester GPA on the 4.00 scale, never a plain average of grades.</td></tr>
+      <tr><td>Degree class</td><td>Classifies against First Class 3.70, Second Upper 3.30, Second Lower 3.00, General Pass 2.00, and states the gap to the next class up.</td></tr>
+      <tr><td>Target planner</td><td>Solves for the average required over the remaining credits, converts it to a grade, and reports secured, reachable, tight or out of reach rather than printing an impossible number.</td></tr>
+      <tr><td>Trend chart</td><td>Cumulative GPA after each semester as an SVG line chart with a dashed target line and a hover readout. Drawn from scratch, no charting library.</td></tr>
+      <tr><td>Repeat handling</td><td>A superseded attempt can be excluded from the GPA without being deleted from the record.</td></tr>
+      <tr><td>Non-GPA grades</td><td>MC, W and I carry credits but stay out of the GPA arithmetic.</td></tr>
+      <tr><td>Local storage</td><td>The transcript is saved in the browser and restored on the next visit. Export and import as JSON.</td></tr>
+      <tr><td>Example on first run</td><td>A new visitor lands on a sample transcript, clearly labelled, so the application is doing something the moment it opens.</td></tr>
+      <tr><td>Themes and access</td><td>Light and dark themes, keyboard operable, labelled form controls, live regions for status messages, responsive down to phone width.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Technologies and tools</h2>
+  <div class="grid2">
+    <div>
+      <h3>Built with</h3>
+      <ul>
+        <li>HTML, CSS and vanilla JavaScript. No framework, no build step, no dependencies at runtime.</li>
+        <li>CSS custom properties for the light and dark token sets.</li>
+        <li>Hand-written inline SVG for the chart.</li>
+        <li><code>localStorage</code> for persistence.</li>
+        <li>Google Fonts: Newsreader, Public Sans, IBM Plex Mono, each with a local fallback stack.</li>
+        <li>Node.js for the test runners and the single-file build script.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>AI and other tools</h3>
+      <ul>
+        <li>An AI coding agent in agent mode, running inside Visual Studio Code.</li>
+        <li>jsdom, to drive the real DOM in the journey tests.</li>
+        <li>Brave headless, to render and screenshot the page during review.</li>
+        <li>A hosted artifact page, to give the application a public URL.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Prompts used</h2>
+  <p>The application was produced from a single instruction issued to the coding agent, with the
+     assignment brief attached as a file. There were no follow-up prompts: every subsequent step below was
+     taken by the agent on its own.</p>
+
+  <div class="prompt"><span class="who">Prompt 1 - typed to the AI coding agent, agent mode</span>read @instructions.md and do it</div>
+
+  <div class="prompt"><span class="who">Attached input - instructions.md</span>The assignment brief for Laboratory Exercise 1 - Part 1 (AI Web Application Challenge), supplied
+as a file in the working directory and read by the agent as its specification.</div>
+
+  <h3>Skills the agent loaded on its own</h3>
+  <p>The agent loaded three packaged instruction sets of its own accord during the run. These are
+     AI-generated inputs in the
+     same sense as a prompt, so they are recorded here.</p>
+  <ul>
+    <li><code>dataviz</code> - chart form, colour and interaction rules, used for the GPA trend chart.</li>
+    <li><code>artifact-design</code> - design fundamentals, used for the typography and palette pass.</li>
+    <li><code>artifact-capabilities</code> - the runtime contract for the published page, used to make Export JSON work inside the hosted viewer.</li>
+  </ul>
+
+  <h2>Other AI-generated actions</h2>
+  <p>The agent worked autonomously through the following sequence. Nothing in this list came from a further
+     human instruction.</p>
+  <ol>
+    <li>Read the brief, chose the problem, users and essential journey.</li>
+    <li>Wrote the GPA engine as pure functions with no DOM access, so it could be tested directly.</li>
+    <li>Wrote fourteen engine tests and ran them. Two failed. Both were investigated: one was a wrong
+        expectation in the test, one was a real tie-break defect where a required average of 4.00 returned
+        A+ instead of A. The defect was fixed with an explicit grade ladder; the wrong expectation was corrected.</li>
+    <li>Wrote the markup, the stylesheet and the interface layer.</li>
+    <li>Installed jsdom and wrote sixteen journey tests that drive the real DOM: submit the form, edit,
+        exclude, delete, import, clear, read the planner verdict, count the chart points.</li>
+    <li>Rendered the page in headless Brave and inspected the screenshots. Three defects were found by
+        looking rather than by testing: the chart wasted half its height on an unused range, the target
+        label collided with the last data point at some targets, and the theme button reported the wrong
+        mode under a dark operating system.</li>
+    <li>Found and fixed a theme bug where the application erased a theme already set by the host page.</li>
+    <li>Replaced the system font stack with a deliberate pairing, and shifted the neutral palette to sit
+        with the accent colour.</li>
+    <li>Made the first run land on a labelled example transcript instead of an empty form.</li>
+    <li>Published the application as a hosted artifact, then discovered that the hosted viewer blocks
+        ordinary download links, so Export JSON was routed through the host save API with the local
+        download kept as the fallback. Republished.</li>
+    <li>Wrote the README, the single-file build script, this document and the PDF.</li>
+  </ol>
+
+  <h2>What was tested before submission</h2>
+  <table>
+    <thead><tr><th>Test</th><th>How</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>GPA engine, 14 assertions</td><td><code>node tests/run.js</code></td><td class="pass">14 / 14 passed</td></tr>
+      <tr><td>User journey through a real DOM, 16 assertions</td><td><code>node tests/ui.test.js</code> with jsdom</td><td class="pass">16 / 16 passed</td></tr>
+      <tr><td>Engine tests in a browser</td><td><code>tests/tests.html</code></td><td class="pass">Same 14 assertions pass</td></tr>
+      <tr><td>Visual check, light and dark</td><td>Headless Brave screenshots at 1280px</td><td class="pass">Checked, three layout defects fixed</td></tr>
+      <tr><td>Single-file build</td><td>Rendered <code>dist/gradepath.html</code> on its own</td><td class="pass">Identical to the multi-file version</td></tr>
+      <tr><td>Published page</td><td>Opened the artifact URL</td><td class="pass">Loads with the example transcript</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Cases covered by those tests</h3>
+  <ul>
+    <li>Credit weighting: four credits at A with one at D gives 3.40, not the 2.50 a plain average would give.</li>
+    <li>An empty transcript reports no GPA rather than 0.00.</li>
+    <li>An E counts in the GPA and earns no credit; MC and W stay out of the GPA but keep their credits.</li>
+    <li>An excluded repeat attempt leaves every total.</li>
+    <li>Class boundaries at the exact values: 3.70 is First Class, 3.69 is Second Upper.</li>
+    <li>Semesters are listed in curriculum order however they were entered.</li>
+    <li>The planner refuses zero remaining credits and names an unreachable target instead of printing an
+        impossible average.</li>
+    <li>The form rejects a missing grade, zero credits and an absurd credit value with a message that says
+        how to fix it.</li>
+    <li>The transcript survives a reload, and clearing it empties every total.</li>
+  </ul>
+
+  <h3>Known limits</h3>
+  <ul>
+    <li>Data lives in one browser on one device. Clearing site data removes it. There is no account and no sync.</li>
+    <li>The grade points and class boundaries are the BICT ones. Another programme edits the constants at
+        the top of <code>assets/gpa.js</code>.</li>
+    <li>The planner assumes the remaining credits all count towards the GPA.</li>
+    <li>Figures should be checked against the official academic record before any decision.</li>
+  </ul>
+
+  <h2>Access and run instructions</h2>
+  <table>
+    <tr><td class="k">Application URL</td><td>https://claude.ai/code/artifact/d5a4d019-3de4-41af-bb9a-5b84002c5d93<br>
+      <span style="color:var(--muted);font-size:8.5pt">Private by default. Open it and use the page's share
+      menu to make it reachable, or run the files in the archive.</span></td></tr>
+    <tr><td class="k">Run locally</td><td>Open <code>gradepath/index.html</code> in any modern browser. No server, no install, no configuration.</td></tr>
+    <tr><td class="k">Single file</td><td><code>gradepath/dist/gradepath.html</code> is the whole application in one file.</td></tr>
+    <tr><td class="k">Run the tests</td><td><code>node tests/run.js</code>, then <code>npm i jsdom</code> and <code>node tests/ui.test.js</code>.</td></tr>
+    <tr><td class="k">Credentials</td><td>None. The application has no accounts, no keys and no secrets.</td></tr>
+  </table>
+
+  <footer>
+    GradePath &middot; IIC 2223 Web Application Development &middot; Laboratory Exercise 1 - Part 1 &middot;
+    Built with an AI coding agent in agent mode.
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GradePath - GPA &amp; Degree Class Planner</title>
+<meta name="description" content="Track your semester grades, see your live GPA and degree class, and work out the grades you still need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">GP</span>
+      <span>
+        <strong>GradePath</strong>
+        <span class="brand-sub">GPA &amp; degree class planner</span>
+      </span>
+    </div>
+    <button id="themeBtn" class="ghost" type="button" aria-pressed="false">
+      <span id="themeLabel">Dark mode</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <!-- 1. Headline numbers -->
+  <section class="stats" aria-label="Overall standing">
+    <div class="stat hero">
+      <span class="stat-label">Cumulative GPA</span>
+      <span class="stat-value" id="statGpa">--</span>
+      <span class="stat-note" id="statGpaNote">Add your first course to begin</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Degree class on current form</span>
+      <span class="stat-value sm" id="statClass">--</span>
+      <span class="stat-note" id="statClassNote">Based on the boundaries below</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Credits counted in GPA</span>
+      <span class="stat-value sm" id="statCredits">0</span>
+      <span class="stat-note" id="statCreditsNote">0 passed at C or above</span>
+    </div>
+  </section>
+
+  <div class="cols">
+
+    <!-- 2. Entry form -->
+    <section class="card" aria-labelledby="addH">
+      <h2 id="addH">Add a course</h2>
+      <form id="courseForm" novalidate>
+        <input type="hidden" id="editId" value="">
+        <div class="field">
+          <label for="semester">Semester</label>
+          <select id="semester" required></select>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="code">Course code</label>
+            <input id="code" type="text" placeholder="IIC 2223" autocomplete="off" required>
+          </div>
+          <div class="field narrow">
+            <label for="credits">Credits</label>
+            <input id="credits" type="number" min="0.5" max="30" step="0.5" placeholder="3" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="title">Course title <span class="opt">optional</span></label>
+          <input id="title" type="text" placeholder="Web Application Development" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="grade">Grade</label>
+          <select id="grade" required></select>
+        </div>
+        <p class="err" id="formErr" role="alert" hidden></p>
+        <div class="actions">
+          <button type="submit" class="primary" id="submitBtn">Add course</button>
+          <button type="button" class="ghost" id="cancelEdit" hidden>Cancel</button>
+        </div>
+      </form>
+
+      <hr>
+      <h3>Your data</h3>
+      <p class="hint">Everything stays in this browser. Nothing is uploaded.</p>
+      <div class="actions wrap-actions">
+        <button type="button" class="ghost" id="sampleBtn">Load sample transcript</button>
+        <button type="button" class="ghost" id="exportBtn">Export JSON</button>
+        <button type="button" class="ghost" id="importBtn">Import JSON</button>
+        <button type="button" class="ghost danger" id="clearBtn">Clear all</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+    </section>
+
+    <div class="stack">
+
+      <!-- 3. Trend -->
+      <section class="card" aria-labelledby="trendH">
+        <h2 id="trendH">Cumulative GPA after each semester</h2>
+        <p class="hint" id="trendHint">The dashed line is your target. Hover a point for the numbers.</p>
+        <div id="chart" class="chart"></div>
+      </section>
+
+      <!-- 4. Planner -->
+      <section class="card" aria-labelledby="planH">
+        <h2 id="planH">What do I still need?</h2>
+        <div class="row">
+          <div class="field">
+            <label for="target">Target</label>
+            <select id="target"></select>
+          </div>
+          <div class="field narrow">
+            <label for="remaining">Credits left</label>
+            <input id="remaining" type="number" min="1" max="200" step="0.5" value="30">
+          </div>
+        </div>
+        <div id="planOut" class="verdict" role="status" aria-live="polite"></div>
+      </section>
+
+      <!-- 5. Transcript -->
+      <section class="card" aria-labelledby="listH">
+        <h2 id="listH">Transcript</h2>
+        <p class="note" id="sampleNote" hidden>These are example courses so you can see how it works. Press
+          <strong>Clear all</strong> to start on your own record.</p>
+        <div id="list"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p>Grade points: A+/A 4.00, A- 3.70, B+ 3.30, B 3.00, B- 2.70, C+ 2.30, C 2.00, C- 1.70, D+ 1.30, D 1.00, E 0.00.
+       MC, W and I carry credits but stay out of the GPA. Award boundaries: First Class 3.70, Second Upper 3.30,
+       Second Lower 3.00, General Pass 2.00.</p>
+    <p>Check every figure against your official record before you rely on it.</p>
+  </footer>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="assets/gpa.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

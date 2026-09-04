@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GradePath - engine tests</title>
+<link rel="stylesheet" href="../assets/styles.css">
+<style>
+  main { max-width: 720px; margin: 32px auto; padding: 0 20px; }
+  li { padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+  ul { list-style: none; padding: 0; margin: 1rem 0; }
+  .ok::before  { content: "PASS"; color: var(--good); font-weight: 700; margin-right: .6rem; }
+  .bad::before { content: "FAIL"; color: var(--bad);  font-weight: 700; margin-right: .6rem; }
+  .why { display: block; color: var(--bad); font-size: .82rem; margin-left: 3rem; }
+  #tally { font-size: 1.2rem; font-weight: 650; }
+</style>
+</head>
+<body>
+<main>
+  <h1>GradePath engine tests</h1>
+  <p class="hint">The same assertions the command line runner uses, executed in this browser.</p>
+  <p id="tally">Running...</p>
+  <ul id="out"></ul>
+</main>
+<script src="../assets/gpa.js"></script>
+<script src="tests.js"></script>
+<script>
+  var results = GradePathTests.run(GPA);
+  var failed = results.filter(function (r) { return !r.ok; });
+  document.getElementById('out').innerHTML = results.map(function (r) {
+    return '<li class="' + (r.ok ? 'ok' : 'bad') + '">' + r.name +
+      (r.ok ? '' : '<span class="why">' + r.message + '</span>') + '</li>';
+  }).join('');
+  document.getElementById('tally').textContent =
+    (results.length - failed.length) + ' of ' + results.length + ' passed';
+</script>
+</body>
+</html>
