@@ -186,7 +186,7 @@ setTimeout(function () {
     eq($('splash').hidden, true, 'splash removed');
   });
   report();
-}, 1500);
+}, 2600);
 
 }
 

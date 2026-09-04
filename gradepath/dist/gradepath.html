@@ -1025,12 +1025,13 @@ tr.off td { opacity: .5; }
 
   /* ---------- loading screen ---------- */
 
-  /* Held for a beat so it reads as a deliberate frame rather than a flash, and
-     until the web fonts settle so the app does not repaint under the user. */
+  /* The app itself is ready almost immediately, so the screen is held for a set
+     time to be seen at all, and until the web fonts settle so the interface does
+     not repaint under the user. Change MIN_VISIBLE to make it shorter or longer. */
   function dismissSplash() {
     var el = $('splash');
     if (!el) return;
-    var MIN_VISIBLE = 500, FONT_WAIT = 2000, FADE = 400;
+    var MIN_VISIBLE = 1400, FONT_WAIT = 2000, FADE = 450;
 
     function hide() {
       setTimeout(function () {
