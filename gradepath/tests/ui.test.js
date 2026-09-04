@@ -51,6 +51,11 @@ function clickIn(containerId, action, index) {
 
 function main() {
 
+check('the loading screen covers the app while it starts up', function () {
+  eq($('splash').hidden, false, 'splash visible');
+  eq($('splash').classList.contains('done'), false, 'not yet fading');
+});
+
 check('a first-time visitor lands on a working example, clearly labelled', function () {
   eq($('list').querySelectorAll('tbody tr').length, 12, 'example rows');
   eq($('sampleNote').hidden, false, 'example notice shown');
@@ -165,12 +170,23 @@ check('clear all empties the transcript', function () {
   eq($('statGpa').textContent, '--', 'gpa reset');
 });
 
-var failed = results.filter(function (r) { return !r.ok; });
-results.forEach(function (r) {
-  console.log((r.ok ? 'PASS  ' : 'FAIL  ') + r.name + (r.ok ? '' : '\n      ' + r.message));
-});
-console.log('\n' + (results.length - failed.length) + '/' + results.length + ' passed');
-process.exit(failed.length ? 1 : 0);
+function report() {
+  var failed = results.filter(function (r) { return !r.ok; });
+  results.forEach(function (r) {
+    console.log((r.ok ? 'PASS  ' : 'FAIL  ') + r.name + (r.ok ? '' : '\n      ' + r.message));
+  });
+  console.log('\n' + (results.length - failed.length) + '/' + results.length + ' passed');
+  process.exit(failed.length ? 1 : 0);
+}
+
+/* The overlay clears on a timer, so the last assertion has to wait for it. */
+setTimeout(function () {
+  check('the loading screen clears once the app has rendered', function () {
+    eq($('splash').classList.contains('done'), true, 'fade applied');
+    eq($('splash').hidden, true, 'splash removed');
+  });
+  report();
+}, 1500);
 
 }
 

@@ -210,6 +210,39 @@ tr.off td { opacity: .5; }
 
 .foot { color: var(--muted); font-size: .78rem; margin: 26px 0 40px; max-width: 74ch; }
 
+/* Loading screen. Painted before anything else and dismissed by the script once
+   the app has rendered and the web fonts have settled. */
+#splash {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  background: var(--bg);
+  transition: opacity .35s ease, visibility .35s ease;
+  /* If the script never runs, the overlay still gets out of the way. */
+  animation: splash-failsafe 0s linear 8s forwards;
+}
+#splash.done { opacity: 0; visibility: hidden; }
+#splash[hidden] { display: none; }
+@keyframes splash-failsafe { to { opacity: 0; visibility: hidden; } }
+
+.splash-inner { display: grid; justify-items: center; gap: .85rem; }
+.splash-mark {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px;
+  background: var(--accent); color: #fff; font-family: var(--font-num); font-size: 1.05rem;
+}
+.splash-name { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; }
+.splash-bar { width: 172px; height: 3px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.splash-bar i { display: block; width: 40%; height: 100%; border-radius: 2px; background: var(--accent);
+                animation: splash-slide 1.15s cubic-bezier(.4,0,.2,1) infinite; }
+@keyframes splash-slide { from { transform: translateX(-60%); } to { transform: translateX(250%); } }
+.splash-sub {
+  font-family: var(--font-num); font-size: .68rem; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  #splash { transition: none; }
+  .splash-bar i { animation: none; width: 100%; }
+}
+
 /* Toast */
 .toast {
   position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
@@ -226,6 +259,15 @@ tr.off td { opacity: .5; }
 </style>
 </head>
 <body>
+<div id="splash" role="status" aria-label="Loading GradePath">
+  <div class="splash-inner">
+    <span class="splash-mark" aria-hidden="true">GP</span>
+    <span class="splash-name">GradePath</span>
+    <span class="splash-bar" aria-hidden="true"><i></i></span>
+    <span class="splash-sub">Loading your transcript</span>
+  </div>
+</div>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
@@ -556,6 +598,7 @@ tr.off td { opacity: .5; }
 (function () {
   'use strict';
 
+  var BOOT_AT = Date.now();
   var STORE = 'gradepath.v1';
   var THEME = 'gradepath.theme';
   var $ = function (id) { return document.getElementById(id); };
@@ -980,6 +1023,33 @@ tr.off td { opacity: .5; }
     state.courses = []; state.sample = false; save(); render(); toast('Transcript cleared');
   }
 
+  /* ---------- loading screen ---------- */
+
+  /* Held for a beat so it reads as a deliberate frame rather than a flash, and
+     until the web fonts settle so the app does not repaint under the user. */
+  function dismissSplash() {
+    var el = $('splash');
+    if (!el) return;
+    var MIN_VISIBLE = 500, FONT_WAIT = 2000, FADE = 400;
+
+    function hide() {
+      setTimeout(function () {
+        el.classList.add('done');
+        setTimeout(function () { el.hidden = true; }, FADE);
+      }, Math.max(0, MIN_VISIBLE - (Date.now() - BOOT_AT)));
+    }
+
+    var fonts = document.fonts;
+    if (fonts && fonts.ready && typeof fonts.ready.then === 'function') {
+      var settled = false;
+      var once = function () { if (!settled) { settled = true; hide(); } };
+      fonts.ready.then(once, once);
+      setTimeout(once, FONT_WAIT);   /* never wait on a font that will not arrive */
+    } else {
+      hide();
+    }
+  }
+
   /* ---------- theme ---------- */
 
   function prefersDark() {
@@ -1037,6 +1107,8 @@ tr.off td { opacity: .5; }
     });
 
     window.addEventListener('resize', function () { var t = $('tip'); if (t) t.hidden = true; });
+
+    dismissSplash();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

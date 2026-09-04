@@ -2,6 +2,7 @@
 (function () {
   'use strict';
 
+  var BOOT_AT = Date.now();
   var STORE = 'gradepath.v1';
   var THEME = 'gradepath.theme';
   var $ = function (id) { return document.getElementById(id); };
@@ -426,6 +427,33 @@
     state.courses = []; state.sample = false; save(); render(); toast('Transcript cleared');
   }
 
+  /* ---------- loading screen ---------- */
+
+  /* Held for a beat so it reads as a deliberate frame rather than a flash, and
+     until the web fonts settle so the app does not repaint under the user. */
+  function dismissSplash() {
+    var el = $('splash');
+    if (!el) return;
+    var MIN_VISIBLE = 500, FONT_WAIT = 2000, FADE = 400;
+
+    function hide() {
+      setTimeout(function () {
+        el.classList.add('done');
+        setTimeout(function () { el.hidden = true; }, FADE);
+      }, Math.max(0, MIN_VISIBLE - (Date.now() - BOOT_AT)));
+    }
+
+    var fonts = document.fonts;
+    if (fonts && fonts.ready && typeof fonts.ready.then === 'function') {
+      var settled = false;
+      var once = function () { if (!settled) { settled = true; hide(); } };
+      fonts.ready.then(once, once);
+      setTimeout(once, FONT_WAIT);   /* never wait on a font that will not arrive */
+    } else {
+      hide();
+    }
+  }
+
   /* ---------- theme ---------- */
 
   function prefersDark() {
@@ -483,6 +511,8 @@
     });
 
     window.addEventListener('resize', function () { var t = $('tip'); if (t) t.hidden = true; });
+
+    dismissSplash();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

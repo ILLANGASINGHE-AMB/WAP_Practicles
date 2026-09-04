@@ -199,6 +199,39 @@ tr.off td { opacity: .5; }
 
 .foot { color: var(--muted); font-size: .78rem; margin: 26px 0 40px; max-width: 74ch; }
 
+/* Loading screen. Painted before anything else and dismissed by the script once
+   the app has rendered and the web fonts have settled. */
+#splash {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  background: var(--bg);
+  transition: opacity .35s ease, visibility .35s ease;
+  /* If the script never runs, the overlay still gets out of the way. */
+  animation: splash-failsafe 0s linear 8s forwards;
+}
+#splash.done { opacity: 0; visibility: hidden; }
+#splash[hidden] { display: none; }
+@keyframes splash-failsafe { to { opacity: 0; visibility: hidden; } }
+
+.splash-inner { display: grid; justify-items: center; gap: .85rem; }
+.splash-mark {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px;
+  background: var(--accent); color: #fff; font-family: var(--font-num); font-size: 1.05rem;
+}
+.splash-name { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; }
+.splash-bar { width: 172px; height: 3px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.splash-bar i { display: block; width: 40%; height: 100%; border-radius: 2px; background: var(--accent);
+                animation: splash-slide 1.15s cubic-bezier(.4,0,.2,1) infinite; }
+@keyframes splash-slide { from { transform: translateX(-60%); } to { transform: translateX(250%); } }
+.splash-sub {
+  font-family: var(--font-num); font-size: .68rem; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  #splash { transition: none; }
+  .splash-bar i { animation: none; width: 100%; }
+}
+
 /* Toast */
 .toast {
   position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
